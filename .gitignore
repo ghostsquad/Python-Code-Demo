@@ -1,6 +1,27 @@
+.gradle/
+.settings/
+.metadata/
+.idea/
+.ansible/
+.ropeproject
+bin/
+build/
+node_modules/
+npm-debug.log
+
+.DS_Store
+.project
+.classpath
+
+*.iml
+*.ipr
+*.iws
+*.pyc
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
 # C extensions
 *.so
