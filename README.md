@@ -1,3 +1,3 @@
-## Python Code Demo ##
+## Code Demo ##
 
 Demoing code stuff
