@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Usage: start-demo <demo_file>
+"""
+import os
+import sys
+import time
+import random
+import colorama
+from docopt import docopt
+
+colorama.init()
+
+typing_speed = 55  # wpm
+
+BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
+
+
+def printout(text, color=WHITE):
+    seq = "\x1b[1;%dm" % (30 + color) + text + "\x1b[0m"
+    sys.stdout.write(seq)
+
+
+def slow_type(text, color=WHITE):
+    for char in text:
+        printout(char, color)
+        time.sleep(random.random() * 10.0 / typing_speed)
+
+
+def main(path):
+    path = os.path.normpath(path)
+    print('running demo: {0}'.format(path))
+    with open(path, encoding='utf8') as f:
+        data = f.readlines()
+
+    i = 1
+    for line in data:
+        line = line.rstrip('\r\n').rstrip('\n')
+        printout('[{0}] '.format(str(i)), YELLOW)
+
+        color = WHITE
+
+        if line.startswith('#'):
+            color = GREEN
+
+        slow_type(line, color)
+        print('')
+        if not line.startswith('#'):
+            eval(line)
+        i += 1
+
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__)
+    main(arguments['<demo_file>'])

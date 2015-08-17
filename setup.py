@@ -38,4 +38,4 @@ config = {
     ],
 
 }
-setup(**config, requires=['mock'])
+setup(**config, requires=['mock', 'colorama', 'docopt'])
